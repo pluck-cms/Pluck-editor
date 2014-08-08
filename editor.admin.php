@@ -6,77 +6,73 @@
 //DESCRIPTION: this modules lets an user add an RSS Feed to a page
 //Make sure the file isn't accessed directly
 defined('IN_PLUCK') or exit('Access denied!');
-
 function read_style($theme) {
-	$temp = 'data/themes/' . $theme . '/style.css';
-	$file = file_get_contents($temp);
-	return $file;
+	return file_get_contents('data/themes/' . $theme . '/style.css');
 }
 
 function save_style($theme, $content) {
-	$temp = 'data/themes/' . $theme . '/style.css';
-	$file = fopen($temp, 'w');
+	$file = fopen('data/themes/' . $theme . '/style.css', 'w');
 	$content = stripslashes($content);
 	fputs($file, $content);
 	fclose($file);
 }
 
 function read_themes($theme) {
-	$temp2 = 'data/themes/' . $theme . '/theme.php';
-	$file = file_get_contents($temp2);
-	return $file;
+	return file_get_contents('data/themes/' . $theme . '/theme.php');
 }
 
 function save_themes($theme, $content) {
-	$temp2 = 'data/themes/' . $theme . '/theme.php';
-	$file = fopen($temp2, 'w');
+	$file = fopen('data/themes/' . $theme . '/theme.php', 'w');
 	$content = stripslashes($content);
 	fputs($file, $content);
 	fclose($file);
 }
 
 function editor_pages_admin() {
+	global $lang;
 
 	$module_page_admin[] = array(
 		'func'  => 'Main',
-		'title' => 'Choose to edit the template file or the CSS file.'
+		'title' => $lang['editor']['main']
 	);
 	$module_page_admin[] = array(
 		'func'  => 'Theme',
-		'title' => 'Theme Editor'
+		'title' => $lang['editor']['theme']
 	);
 	$module_page_admin[] = array(
 		'func'  => 'CSS',
-		'title' => 'CSS Editor'
+		'title' => $lang['editor']['css']
 	);
 	
 	$module_page_admin[] = array(
 		'func'  => 'Info',
-		'title' => 'PHP Info'
+		'title' => $lang['editor']['info']
 	);
 	
 	return $module_page_admin;
 }
 
 function editor_page_admin_Main() {
-	showmenudiv("Edit your css file","It allows you to edit your css file",'data/modules/editor/images/css.png','admin.php?module=editor&page=CSS',false);
-	showmenudiv("Edit your Theme file","It allows you to edit your template file",'data/modules/editor/images/theme.png','admin.php?module=editor&page=Theme',false);
-	showmenudiv("Info","PHPInfo",'data/modules/editor/images/theme.png','admin.php?module=editor&page=Info',false);
+	global $lang;
+
+	showmenudiv($lang['editor']['edit_css'],$lang['editor']['edit_css_info'],'data/modules/editor/images/css.png','admin.php?module=editor&page=CSS',false);
+	showmenudiv($lang['editor']['edit_theme'],$lang['editor']['edit_theme_info'],'data/modules/editor/images/theme.png','admin.php?module=editor&page=Theme',false);
+	showmenudiv($lang['editor']['edit_info'],$lang['editor']['edit_info_info'],'data/modules/editor/images/theme.png','admin.php?module=editor&page=Info',false);
 }
 
 function editor_page_admin_Theme() {
-	//Allow modules to manipulate theme
+	//Allow module to manipulate theme
 	$page_theme = THEME;
 	run_hook('site_theme', array(&$page_theme));
-	$temp2 = read_themes($page_theme);
+	global $lang;
 ?>
 	<form method="post" action="">
-		<label class="kop2" for="cont1">Content of theme file</label>
+		<label class="kop2" for="cont1"><?php echo $lang['editor']['content_theme']; ?></label>
 		<br />
-		<textarea name="cont1" id="cont1" cols="90" rows="20"><?php echo $temp2; ?></textarea>
+		<textarea name="cont1" id="cont1" cols="90" rows="20"><?php echo read_themes($page_theme); ?></textarea>
 		<br />
-		<input type="submit" name="Submit" value="Submit" />
-		<input type="button" name="Cancel" value="Cancel" onclick="javascript: window.location='admin.php?module=editor';" />
+		<input type="submit" name="Submit" value="<?php echo $lang['general']['save']; ?>" />
+		<input type="button" name="Cancel" value="<?php echo $lang['general']['cancel']; ?>" onclick="javascript: window.location='admin.php?module=editor';" />
 	</form>
 <?php
 	//Save style.
@@ -85,22 +81,21 @@ function editor_page_admin_Theme() {
 		save_themes($page_theme, $cont1);
 		redirect('admin.php?module=editor', 0);
 	}
-	echo "<p><a href=\"?module=editor\"><<< Back</a></p>";
 }
  
 function editor_page_admin_CSS() {
-$page_theme = THEME;
-run_hook('site_theme', array(&$page_theme));
-
-	$temp2 = read_style($page_theme);
+	//Allow module to manipulate css
+	$page_theme = THEME;
+	run_hook('site_theme', array(&$page_theme));
+	global $lang;
 ?>
 	<form method="post" action="">
-		<label class="kop2" for="cont1">Content of CSS file</label>
+		<label class="kop2" for="cont1"><?php echo $lang['editor']['content_css']; ?></label>
 		<br />
-		<textarea name="cont1" id="cont1" cols="90" rows="20"><?php echo $temp2; ?></textarea>
+		<textarea name="cont1" id="cont1" cols="90" rows="20"><?php echo read_style($page_theme); ?></textarea>
 		<br />
-		<input type="submit" name="Submit" value="Submit" />
-		<input type="button" name="Cancel" value="Cancel" onclick="javascript: window.location='admin.php?module=editor';" />
+		<input type="submit" name="Submit" value="<?php echo $lang['general']['save']; ?>" />
+		<input type="button" name="Cancel" value="<?php echo $lang['general']['cancel']; ?>" onclick="javascript: window.location='admin.php?module=editor';" />
 	</form>
 <?php
 	//Save style.
@@ -109,10 +104,10 @@ run_hook('site_theme', array(&$page_theme));
 		save_style($page_theme, $cont1);
 		redirect('admin.php?module=editor', 0);
 	}
-	echo "<p><a href=\"?module=editor\"><<< Back</a></p>";
 }
  
 function editor_page_admin_Info() {
+	echo "<p><a href=\"?module=editor\"><<< Back</a></p>";
 	phpinfo();
 	echo "<p><a href=\"?module=editor\"><<< Back</a></p>";
 }

@@ -1,11 +1,12 @@
 <?php
 
 function editor_info() {
+	global $lang;
 	$module_info = array(
-		'name'          => 'Template editor module',
-		'intro'         => 'This module allows you to edit the template file.',
+		'name'          => $lang['editor']['name'],
+		'intro'         => $lang['editor']['intro'],
 		'version'       => '0.1',
-		'author'        => 'Bas Steelooper (rewrite of the module from A_Bach to 4.7)',
+		'author'        => $lang['editor']['author'],
 		'website'       => 'http://xobit.nl',
 		'icon'          => 'images/style-edit.png',
 		'compatibility' => '4.7'
