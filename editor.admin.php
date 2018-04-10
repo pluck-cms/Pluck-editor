@@ -69,11 +69,12 @@ function editor_page_admin_Theme() {
 	<form method="post" action="">
 		<label class="kop2" for="cont1"><?php echo $lang['editor']['content_theme']; ?></label>
 		<br />
-		<textarea name="cont1" id="cont1" cols="90" rows="20"><?php echo read_themes($page_theme); ?></textarea>
+		<textarea name="cont1" id="cont1" cols="90" rows="20" class="mceNoEditor"><?php echo read_themes($page_theme); ?></textarea>
 		<br />
 		<input type="submit" name="Submit" value="<?php echo $lang['general']['save']; ?>" />
 		<input type="button" name="Cancel" value="<?php echo $lang['general']['cancel']; ?>" onclick="javascript: window.location='admin.php?module=editor';" />
 	</form>
+	<script type="text/javascript">tinymce.remove('textarea');</script>
 <?php
 	//Save style.
 	if (isset($_POST['Submit'])) {
@@ -92,11 +93,12 @@ function editor_page_admin_CSS() {
 	<form method="post" action="">
 		<label class="kop2" for="cont1"><?php echo $lang['editor']['content_css']; ?></label>
 		<br />
-		<textarea name="cont1" id="cont1" cols="90" rows="20"><?php echo read_style($page_theme); ?></textarea>
+		<textarea name="cont1" id="cont1" cols="90" rows="20" class="mceNoEditor"><?php echo read_style($page_theme); ?></textarea>
 		<br />
 		<input type="submit" name="Submit" value="<?php echo $lang['general']['save']; ?>" />
 		<input type="button" name="Cancel" value="<?php echo $lang['general']['cancel']; ?>" onclick="javascript: window.location='admin.php?module=editor';" />
 	</form>
+	<script type="text/javascript"> tinymce.remove('textarea');</script>
 <?php
 	//Save style.
 	if (isset($_POST['Submit'])) {
