@@ -1,4 +1,8 @@
 <?php
+//MODULE NAME: Pluck Editor
+
+//Make sure the file isn't accessed directly
+defined('IN_PLUCK') or exit('Access denied!');
 
 function editor_info() {
 	global $lang;

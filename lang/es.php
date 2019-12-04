@@ -4,7 +4,7 @@
 
 $lang['editor']['name'] = 'Módulo editor de plantillas';
 $lang['editor']['intro'] = 'Este módulo te permite editar el archivo de la plantilla.';
-ang['editor']['author'] = 'Bas Steelooper (reescritura del módulo desde A_Bach to 4.7)';
+ang['editor']['author'] = 'Bas Steelooper, A_Bach';
 $lang['editor']['main'] = 'Elige para editar el archivo de la plantilla o el archivo CSS.';
 $lang['editor']['theme'] = 'Editor de temas';
 $lang['editor']['css'] = 'Editor CSS';

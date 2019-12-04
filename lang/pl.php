@@ -4,7 +4,7 @@
 
 $lang['editor']['name'] = 'Moduł edycji skórki';
 $lang['editor']['intro'] = 'Ten moduł pozwala edytować pliki skórki.';
-$lang['editor']['author'] = 'Bas Steelooper (przepisane z modułu autorstwa A_Bach do wersji 4.7)';
+$lang['editor']['author'] = 'Bas Steelooper, A_Bach';
 $lang['editor']['main'] = 'Wybierz tutaj by edytować plik styli CSS.';
 $lang['editor']['theme'] = 'Edytor skórki';
 $lang['editor']['css'] = 'Edytor CSS';

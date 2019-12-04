@@ -109,8 +109,11 @@ function editor_page_admin_CSS() {
 }
  
 function editor_page_admin_Info() {
-	echo "<p><a href=\"?module=editor\"><<< Back</a></p>";
-	phpinfo();
-	echo "<p><a href=\"?module=editor\"><<< Back</a></p>";
+	global $lang;
+	?>
+	<p><a href="?module=editor">&lt;&lt;&lt; <?php echo $lang['general']['back']; ?></a></p>
+	<?php phpinfo(); ?>
+	<p><a href="?module=editor">&lt;&lt;&lt; <?php echo $lang['general']['back']; ?></a></p>
+	<?php
 }
 ?>

@@ -4,7 +4,7 @@
 
 $lang['editor']['name'] = 'Template editor module';
 $lang['editor']['intro'] = 'This module allows you to edit the template file.';
-$lang['editor']['author'] = 'Bas Steelooper (rewrite of the module from A_Bach to 4.7)';
+$lang['editor']['author'] = 'Bas Steelooper, A_Bach';
 $lang['editor']['main'] = 'Choose to edit the template file or the CSS file.';
 $lang['editor']['theme'] = 'Theme Editor';
 $lang['editor']['css'] = 'CSS Editor';
